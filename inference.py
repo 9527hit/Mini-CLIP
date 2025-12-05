@@ -8,7 +8,8 @@ import random
 
 # Config
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-if torch.backends.mps.is_available() and torch.backends.mps.is_built(): DEVICE = "mps"
+if torch.backends.mps.is_available() and torch.backends.mps.is_built():
+    DEVICE = "mps"  # Mac support
 
 def run_inference(image_path=None):
     # 1. Load Model
