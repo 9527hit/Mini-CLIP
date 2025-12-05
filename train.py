@@ -11,7 +11,7 @@ from src.dataset import CIFAR10Caption
 
 # Config
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-if torch.backends.mps.is_available(): DEVICE = "mps" # Mac support
+if torch.backends.mps.is_available() and torch.backends.mps.is_built(): DEVICE = "mps" # Mac support
 BATCH_SIZE = 64 
 EPOCHS = 5
 LEARNING_RATE = 1e-4

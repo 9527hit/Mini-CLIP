@@ -4,11 +4,11 @@ from transformers import DistilBertTokenizer
 from PIL import Image
 import torch.nn.functional as F
 from src.model import MiniCLIP
-import matplotlib.pyplot as plt
+import random
 
 # Config
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-if torch.backends.mps.is_available(): DEVICE = "mps"
+if torch.backends.mps.is_available() and torch.backends.mps.is_built(): DEVICE = "mps"
 
 def run_inference(image_path=None):
     # 1. Load Model
@@ -45,7 +45,6 @@ def run_inference(image_path=None):
         # Randomly from test set
         from torchvision.datasets import CIFAR10
         test_dataset = CIFAR10(root='./data', train=False, download=True)
-        import random
         idx = random.randint(0, len(test_dataset)-1)
         image_raw, label_idx = test_dataset[idx]
         print(f"Ground Truth Label: {classes[label_idx]}")

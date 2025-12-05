@@ -1,6 +1,7 @@
 import torch
 from torchvision.datasets import CIFAR10
 from torchvision import transforms
+import random
 
 class CIFAR10Caption(CIFAR10):
     def __init__(self, root, train=True, download=True, tokenizer=None, max_length=32):
@@ -32,7 +33,6 @@ class CIFAR10Caption(CIFAR10):
         
         # Construct text description
         # Randomly select a template for robustness
-        import random
         template = random.choice(self.templates)
         caption = template.format(label_name)
         
